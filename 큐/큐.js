@@ -25,10 +25,18 @@ class Q {
   deq() {
     if (!this.size) return;
 
-    this.front = this.front.next;
+    const n = this.head.value;
+    this.head = this.head.next;
 
-    // front만 남고 next가 없는 경우 꼬리를 null로 작업해준다.
-    if (!this.front) this.tail = null;
-    size--;
+    // head만 남고 next가 없는 경우 꼬리를 null로 작업해준다.
+    if (!this.head) this.tail = null;
+    this.size--;
+    return n;
   }
 }
+
+const nq = new Q();
+
+nq.enq(3);
+nq.enq(2);
+nq.enq(1);
