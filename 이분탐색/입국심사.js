@@ -1,24 +1,24 @@
 function solution(n, times) {
-  var answer = 0;
   times.sort((a, b) => a - b);
+  let left = 0;
+  let right = times[0] * n;
+  let answer = 0;
 
-  let l = 1;
-  let r = n * times[0];
+  while (left <= right) {
+    mid = Math.floor((left + right) / 2);
+    let people = 0;
 
-  while (l <= r) {
-    let m = Math.floor((r + l) / 2);
-    let cnt = 0;
-    for (e of times) {
-      cnt += Math.floor(m / e);
-      if (cnt > n) break; // cnt 오버플러우 방지
+    for (let time of times) {
+      const p = Math.floor(mid / time);
+      people += p;
     }
 
-    if (cnt < n) {
-      l = m + 1;
-    } else {
-      r = m - 1;
-      answer = m;
+    if (people < n) left = mid + 1;
+    else {
+      right = mid - 1;
+      answer = mid;
     }
   }
+
   return answer;
 }
