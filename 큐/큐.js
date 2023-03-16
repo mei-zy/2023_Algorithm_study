@@ -33,6 +33,10 @@ class Q {
     this.size--;
     return n;
   }
+
+  _size(){
+    
+  }
 }
 
 const nq = new Q();
