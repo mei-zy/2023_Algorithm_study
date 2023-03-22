@@ -8,3 +8,5 @@ function solution(price, money, count) {
   answer = money >= cur ? 0 : cur - money;
   return answer;
 }
+
+console.log(solution(3, 20, 4)); //10
