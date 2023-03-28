@@ -2,3 +2,7 @@
 
 이상한 나라 소문자가 있다.
 abcdefg 이런식이 아니라, 정해진 소문자의 순서가 있을 때, 알파벳들을 사전순으로 정렬하라
+
+# 02 Trapping Rain Water
+
+<a href="https://leetcode.com/problems/trapping-rain-water/" target="blank_">leetcode- trapping rain water</a>
