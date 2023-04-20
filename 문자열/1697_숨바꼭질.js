@@ -5,33 +5,33 @@ const inputs = require("fs")
   .split("\n")[0]
   .toUpperCase();
 
-let answer = 0;
-
 const [x, n] = inputs.split(" ").map((item) => +item);
 const visited = new Array(1000000).fill(false);
-const q = [x];
-visited[x] = true;
-let flag = false;
 
-while (q.length) {
-  if (flag) break;
-  const len = q.length;
+const bfs = () => {
+  let level = 0;
 
-  for (let i = 0; i < len; i++) {
-    const value = q.shift();
-    if (value === n) {
-      flag = true;
-      break;
-    }
-    for (let visit of [value - 1, value + 1, 2 * value]) {
-      if (visit > 0 && visit < 1000000 && !visited[visit]) {
-        q.push(visit);
-        visited[visit] = true;
+  const q = [x];
+  visited[x] = true;
+
+  if (x === n) return 0;
+
+  while (q.length) {
+    const len = q.length;
+
+    for (let i = 0; i < len; i++) {
+      const t = q.shift();
+      if (t === n) return level;
+
+      for (let nx of [t - 1, t + 1, t * 2]) {
+        if (nx >= 0 && nx <= 1000000 && !visited[nx]) {
+          q.push(nx);
+        }
       }
     }
+    level++;
   }
-  answer++;
-}
+};
 
-if (n === x) console.log(0);
-else console.log(answer - 1);
+const result = bfs();
+console.log(result);
