@@ -1,3 +1,22 @@
+function binarySearch(arr, score) {
+  // 쿼리 결과가 없을 경우 예외 처리
+  if (!arr) return 0;
+  let left = 0;
+  let right = arr.length;
+  while (left < right) {
+    // let mid = left + Math.floor((right - left) / 2);
+    let mid = Math.floor((left + right) / 2);
+    // ! 초과로 구할 경우의 수식.
+    // ! 조건문으로 미만과 초과를 구분할 수 있다.
+    // if (arr[mid] > score) right = mid;
+    // else left = mid + 1;
+    if (arr[mid] >= score) right = mid;
+    else left = mid + 1;
+  }
+  // console.log(arr, score, left, right);
+  return arr.length - left;
+}
+
 const getComb = (item) => {
   const [a, b, c, d, e] = item.split(" ");
 
@@ -59,17 +78,23 @@ function solution(info, query) {
     const target = `${a}${b}${c}${d}`;
     const arr = comb.get(target);
 
+    if (!arr) {
+      answer.push(0);
+      continue;
+    }
+
     let left = 0;
-    let right = arr.length - 1;
+    let right = arr.length;
 
     while (left < right) {
-      const mid = Math.floor((left + right) / 2);
+      let mid = Math.floor((left + right) / 2);
 
       if (arr[mid] < score) left = mid + 1;
       else right = mid;
     }
 
-    console.log(left);
+    answer.push(arr.length - left);
+    // console.log(arr,score,mid, left,right)
   }
 
   return answer;
